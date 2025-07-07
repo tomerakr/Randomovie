@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MovieModal from "./MovieModal";
+import '../Style/MovieCard.css'
 
 function MovieCard({ movie }) {
     const [showModal, setShowModal] = useState(false);
@@ -7,14 +8,28 @@ function MovieCard({ movie }) {
     return (
         <div>
             <div 
-                className="card h-100 p-2 bg-dark text-white" 
-                style={{ width: '15rem' }}
-                onClick={() => {
-                    setShowModal(true)
-                }}>
-                <img src={movie.Poster} alt={movie.Title} className="card-img-top" style={{ height: '35vh'}}/>
-                <div className="card-body">
-                    <h5 className="mb-0 fw-bold">{movie.Title}</h5>
+                className="movie-card position-relative" 
+                style={{ width: '15rem', cursor: 'pointer' }}
+                onClick={() => setShowModal(true)}
+            >
+                {/* <button
+                    className="add-btn btn btn-sm btn-light"
+                    onClick={(e) => {
+                        e.stopPropagation(); // Prevents modal from opening
+                        handleAddToList(movie);
+                    }}
+                    >
+                    +
+                </button> */}
+                <img 
+                    src={movie.Poster} 
+                    alt={movie.Title} 
+                    className="img-fluid"
+                    style={{ height: '40vh', width: '100%', objectFit: 'cover' }}
+                />
+                
+                <div className="overlay-title">
+                    <h5 className="mb-0 fs-6 fw-bold">{movie.Title}</h5>
                 </div>
             </div>
 

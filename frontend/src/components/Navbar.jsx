@@ -25,7 +25,7 @@ function Navbar({ setMovies }) {
                         <a className="nav-link active" href="/">Home</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link active" href="movie">Randomovie</a>
+                        <a className="nav-link active" href="/randomovie">Randomovie</a>
                     </li>
                     {/* Add more links here if needed */}
                 </ul>
