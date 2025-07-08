@@ -1,41 +1,52 @@
 import React, { useState } from "react";
+import { observer } from 'mobx-react-lite';
+import { useStores } from '../main'; // <- import useStores from main.jsx
 import MovieModal from "./MovieModal";
-import '../Style/MovieCard.css'
+import '../Style/MovieCard.css';
 
-function MovieCard({ movie }) {
-    const [showModal, setShowModal] = useState(false);
+const MovieCard = observer(({ movie }) => {
+  const [showModal, setShowModal] = useState(false);
 
-    return (
-        <div>
-            <div 
-                className="movie-card position-relative" 
-                style={{ width: '15rem', cursor: 'pointer' }}
-                onClick={() => setShowModal(true)}
-            >
-                {/* <button
-                    className="add-btn btn btn-sm btn-light"
-                    onClick={(e) => {
-                        e.stopPropagation(); // Prevents modal from opening
-                        handleAddToList(movie);
-                    }}
-                    >
-                    +
-                </button> */}
-                <img 
-                    src={movie.Poster} 
-                    alt={movie.Title} 
-                    className="img-fluid"
-                    style={{ height: '40vh', width: '100%', objectFit: 'cover' }}
-                />
-                
-                <div className="overlay-title">
-                    <h5 className="mb-0 fs-6 fw-bold">{movie.Title}</h5>
-                </div>
-            </div>
+  // ✅ Access the store from context
+  const { movieStore } = useStores();
 
-            {showModal && <MovieModal movie={movie} onClose={() => setShowModal(false)} />}
+  const handleAddToList = () => {
+    movieStore.addMovie(movie);
+    console.log(movieStore.selectedMovies);
+  };
+
+  return (
+    <div>
+      <div 
+        className="movie-card position-relative" 
+        style={{ width: '15rem', cursor: 'pointer' }}
+        onClick={() => setShowModal(true)}
+      >
+        <button
+          className="add-btn btn btn-sm btn-light"
+          onClick={(e) => {
+            e.stopPropagation(); // Prevents opening the modal
+            handleAddToList();
+          }}
+        >
+          +
+        </button>
+
+        <img 
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title} 
+          className="img-fluid"
+          style={{ height: '40vh', width: '100%', objectFit: 'cover' }}
+        />
+        
+        <div className="overlay-title">
+          <h5 className="mb-0 fs-6 fw-bold">{movie.title}</h5>
         </div>
-    );
-}
+      </div>
+
+      {showModal && <MovieModal movie={movie} onClose={() => setShowModal(false)} />}
+    </div>
+  );
+});
 
 export default MovieCard;

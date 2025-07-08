@@ -1,27 +1,39 @@
-import React from "react";
+import '../Style/MovieModal.css'
 
 function MovieModal({ movie, onClose }) {
   return (
-    <div className="modal d-block" tabIndex="-1" style={{ background: 'rgba(87, 42, 42, 0.28)' }}>
-        <div className="modal-dialog">
-            <div className="modal-content">
-                <div className="modal-header">
-                    <h5 className="modal-title">{movie.Title}</h5>
-                    <button type="button" className="btn-close" onClick={onClose}></button>
-                </div>
-                <div className="modal-body">
-                    <p>Year: {movie.Year}</p>
-                    <p>Type: {movie.Type}</p>
-                    {/* add more movie details here */}
-                </div>
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" onClick={onClose}>Close</button>
-                </div>
-            </div>
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+        {/* Image */}
+        <img
+          src={`https://image.tmdb.org/t/p/w780${movie.backdrop_path}`}
+          alt={movie.title}
+          style={{
+            width: '100%',
+            height: '300px',
+            objectFit: 'cover',
+            borderTopLeftRadius: '0.5rem',
+            borderTopRightRadius: '0.5rem',
+          }}
+        />
+
+        {/* Title / Year and Rating */}
+        <div className="d-flex justify-content-between align-items-center p-3">
+          <h4 className="mb-0 text-light">
+            {movie.title} | {movie.release_date?.slice(0, 4)}
+          </h4>
+          <span className="badge bg-warning text-dark">
+            ⭐ {movie.vote_average?.toFixed(1)}
+          </span>
         </div>
+
+        {/* Overview */}
+        <div className="px-3 pb-4 text-light">
+          <p>{movie.overview}</p>
+        </div>
+      </div>
     </div>
   );
 }
-
 
 export default MovieModal;
