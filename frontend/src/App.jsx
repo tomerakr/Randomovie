@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import Randomovie from './components/Randomovie';
+import HomePage from './pages/HomePage';
+import Randomovie from './pages/Randomovie';
 import './App.css'
 
 function App() {

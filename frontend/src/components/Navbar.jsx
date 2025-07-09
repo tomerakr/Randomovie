@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 
 function Navbar({ setMovies }) {
@@ -22,10 +23,12 @@ function Navbar({ setMovies }) {
                 <div className="collapse navbar-collapse" id="navbarContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                        <a className="nav-link active" href="/">Home</a>
+                        <Link to="/" className="nav-link">Home</Link>
+                        {/* <a className="nav-link active" href="/">Home</a> */}
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link active" href="/randomovie">Randomovie</a>
+                        <Link to="/randomovie" className="nav-link">Randomovie</Link>
+                        {/* <a className="nav-link active" href="/randomovie">Randomovie</a> */}
                     </li>
                     {/* Add more links here if needed */}
                 </ul>

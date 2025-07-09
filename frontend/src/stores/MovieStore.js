@@ -1,25 +1,25 @@
 import { makeAutoObservable } from 'mobx';
 
 class MovieStore {
-  selectedMovies = [];
+    selectedMovies = [];
 
-  constructor() {
-    makeAutoObservable(this);
-  }
-
-  addMovie(movie) {
-    if (!this.selectedMovies.some(m => m.imdbID === movie.imdbID)) {
-      this.selectedMovies.push(movie);
+    constructor() {
+        makeAutoObservable(this);
     }
-  }
 
-  removeMovie(imdbID) {
-    this.selectedMovies = this.selectedMovies.filter(m => m.imdbID !== imdbID);
-  }
+    addMovie(movie) {
+        if (!this.selectedMovies.some(m => m.id === movie.id)) {
+            this.selectedMovies.push(movie);
+        }
+    }
 
-  clearMovies() {
-    this.selectedMovies = [];
-  }
+    removeMovie(imdbID) {
+        this.selectedMovies = this.selectedMovies.filter(m => m.imdbID !== imdbID);
+    }
+
+    clearMovies() {
+        this.selectedMovies = [];
+    }
 }
 
 const movieStore = new MovieStore();

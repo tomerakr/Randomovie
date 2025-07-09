@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import Navbar from "./Navbar";
-import MovieList from "./MovieList";
+import Navbar from "../components/Navbar";
+import MovieList from "../components/MovieList";
 import { fetchTopRatedMovies } from '../api/tmdb';
 
 function HomePage() {
@@ -10,7 +10,6 @@ function HomePage() {
     useEffect(() => {
         fetchTopRatedMovies()
         .then(data => {
-            console.log(data);
             setMovies(data);
         });
     }, []);

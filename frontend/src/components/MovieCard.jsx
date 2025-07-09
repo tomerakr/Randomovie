@@ -3,23 +3,24 @@ import { observer } from 'mobx-react-lite';
 import { useStores } from '../main'; // <- import useStores from main.jsx
 import MovieModal from "./MovieModal";
 import '../Style/MovieCard.css';
+import { toJS } from 'mobx';
 
 const MovieCard = observer(({ movie }) => {
-  const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
-  // ✅ Access the store from context
-  const { movieStore } = useStores();
+    // ✅ Access the store from context
+    const { movieStore } = useStores();
 
-  const handleAddToList = () => {
-    movieStore.addMovie(movie);
-    console.log(movieStore.selectedMovies);
-  };
+    const handleAddToList = () => {
+        movieStore.addMovie(movie);
+        console.log(toJS(movieStore.selectedMovies));
+    };
 
   return (
     <div>
       <div 
         className="movie-card position-relative" 
-        style={{ width: '15rem', cursor: 'pointer' }}
+        style={{ width: '12rem', cursor: 'pointer' }}
         onClick={() => setShowModal(true)}
       >
         <button
@@ -36,7 +37,7 @@ const MovieCard = observer(({ movie }) => {
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title} 
           className="img-fluid"
-          style={{ height: '40vh', width: '100%', objectFit: 'cover' }}
+          style={{ height: '32vh', width: '100%', objectFit: 'cover' }}
         />
         
         <div className="overlay-title">

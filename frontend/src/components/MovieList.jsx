@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import MovieCard from './MovieCard';
+import { observer } from 'mobx-react-lite';
 
-function MovieList({ movies }) {
+const MovieList = observer(({ movies }) => {
   
   const [loading, setLoading] = useState(true);
 
@@ -15,7 +16,7 @@ function MovieList({ movies }) {
         <div className='row justify-content-start'>
             {movies.length > 0 &&
               movies.map(movie => (
-                <div key={movie.id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex">
+                <div key={movie.id} className="col-sm-6 col-md-4 col-lg-2 mb-4">
                     <MovieCard movie={movie} />
                 </div>
             ))}
@@ -23,6 +24,6 @@ function MovieList({ movies }) {
       </div>
     </div>
   );
-}
+});
 
 export default MovieList;
