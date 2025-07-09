@@ -20,11 +20,10 @@ const MovieCard = observer(({ movie }) => {
     <div>
       <div 
         className="movie-card position-relative" 
-        style={{ width: '12rem', cursor: 'pointer' }}
+        style={{ minWidth: '11rem', cursor: 'pointer' }}
         onClick={() => setShowModal(true)}
       >
-        <button
-          className="add-btn btn btn-sm btn-light"
+        <button className="add-btn btn"
           onClick={(e) => {
             e.stopPropagation(); // Prevents opening the modal
             handleAddToList();
@@ -37,7 +36,7 @@ const MovieCard = observer(({ movie }) => {
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title} 
           className="img-fluid"
-          style={{ height: '32vh', width: '100%', objectFit: 'cover' }}
+          style={{ height: '34vh', width: '100%', objectFit: 'cover' }}
         />
         
         <div className="overlay-title">

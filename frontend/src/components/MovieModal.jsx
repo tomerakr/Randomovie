@@ -16,19 +16,14 @@ function MovieModal({ movie, onClose }) {
             borderTopRightRadius: '0.5rem',
           }}
         />
-
-        {/* Title / Year and Rating */}
-        <div className="d-flex justify-content-between align-items-center p-3">
-          <h4 className="mb-0 text-light">
-            {movie.title} | {movie.release_date?.slice(0, 4)}
-          </h4>
-          <span className="badge bg-warning text-dark">
-            ⭐ {movie.vote_average?.toFixed(1)}
-          </span>
-        </div>
-
-        {/* Overview */}
-        <div className="px-3 pb-4 text-light">
+        
+        <div className='modal-body-content p-4 text-light'>
+          {/* Title / Year and Rating */}
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <h4 className="mb-0 ">{movie.title} | {movie.release_date?.slice(0, 4)}</h4>
+            <span className="badge bg-warning text-dark">⭐ {movie.vote_average?.toFixed(1)}</span>
+          </div>
+          {/* Overview */}
           <p>{movie.overview}</p>
         </div>
       </div>

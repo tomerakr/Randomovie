@@ -16,7 +16,7 @@ const MovieList = observer(({ movies }) => {
         <div className='row justify-content-start'>
             {movies.length > 0 &&
               movies.map(movie => (
-                <div key={movie.id} className="col-sm-6 col-md-4 col-lg-2 mb-4">
+                <div key={movie.id} className='col mb-4'>
                     <MovieCard movie={movie} />
                 </div>
             ))}

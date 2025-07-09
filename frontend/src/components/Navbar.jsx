@@ -5,9 +5,11 @@ import SearchBar from './SearchBar';
 function Navbar({ setMovies }) {
 
     return (
-        <nav className="navbar navbar-expand navbar-dark bg-dark fixed-top">
+        <nav className="navbar navbar-expand fixed-top" style={{ backgroundColor: '#222831', color: 'red' }}>
             <div className="container-fluid">
-                <a className="navbar-brand" href="/">🎬 My Movies</a>
+                <h4>
+                    <Link to="/" className="nav-link text-light">🎬 My Movies</Link>
+                </h4>
                 <button
                 className="navbar-toggler"
                 type="button"
@@ -23,12 +25,10 @@ function Navbar({ setMovies }) {
                 <div className="collapse navbar-collapse" id="navbarContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link">Home</Link>
-                        {/* <a className="nav-link active" href="/">Home</a> */}
+                        <Link to="/" className="nav-link text-light">Home</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/randomovie" className="nav-link">Randomovie</Link>
-                        {/* <a className="nav-link active" href="/randomovie">Randomovie</a> */}
+                        <Link to="/randomovie" className="nav-link text-light">Randomovie</Link>
                     </li>
                     {/* Add more links here if needed */}
                 </ul>

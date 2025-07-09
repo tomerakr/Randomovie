@@ -16,5 +16,5 @@ createRoot(document.getElementById('root')).render(
     <StoreContext.Provider value={{ movieStore }}>
       <App />
     </StoreContext.Provider>
-  </StrictMode>,
+  </StrictMode>
 )
