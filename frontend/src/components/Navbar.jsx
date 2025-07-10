@@ -30,6 +30,9 @@ function Navbar({ setMovies }) {
                     <li className="nav-item">
                         <Link to="/randomovie" className="nav-link text-light">Randomovie</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to="/poster" className="nav-link text-light">Poster</Link>
+                    </li>
                     {/* Add more links here if needed */}
                 </ul>
                 </div>

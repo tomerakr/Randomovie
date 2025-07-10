@@ -15,7 +15,8 @@ const Randomovie = observer(() => {
     return (
         <>
             <Navbar setMovies={setMovies} />
-            {toJS(movieStore.selectedMovies) == 0 &&
+            <div className='container' style={{ paddingTop: '6vh' }}>
+            {toJS(movieStore.selectedMovies).length === 0 &&
                 <div className='text-light'>
                     <h1>To create your own movie poster</h1>
                     <h1>Please first add movies</h1>
@@ -24,8 +25,23 @@ const Randomovie = observer(() => {
                     </button>
                 </div>
             }
-            <div className='container' style={{ paddingTop: '6vh' }}>
-                <MovieList movies={toJS(movieStore.selectedMovies)} />
+                <div className='row justify-content-center'>
+                    {toJS(movieStore.selectedMovies).length > 0 &&
+                        <div className='col-4'>
+                            <button type='button' className='btn btn-light m-3'
+                                onClick={(e) => {
+                                    // e.stopPropagation(); // Prevents opening the modal
+                                    localStorage.setItem('posterMovies', JSON.stringify(toJS(movieStore.selectedMovies)));
+                                }}
+                                >
+                                Create Poster
+                            </button>
+                        </div>
+                    }
+                </div>
+                <div className='row ustify-content-center'>
+                    <MovieList movies={toJS(movieStore.selectedMovies)} />
+                </div>
             </div>
         </>
     );
