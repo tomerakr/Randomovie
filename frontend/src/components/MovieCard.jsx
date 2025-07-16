@@ -9,11 +9,11 @@ const MovieCard = observer(({ movie }) => {
     const [showModal, setShowModal] = useState(false);
 
     // ✅ Access the store from context
-    const { movieStore } = useStores();
+    const { randomMovieStore } = useStores();
 
     const handleAddToList = () => {
-        movieStore.addMovie(movie);
-        console.log(toJS(movieStore.selectedMovies));
+        randomMovieStore.addMovie(movie);
+        // console.log(toJS(movieStore.selectedMovies));
     };
 
   return (
@@ -26,14 +26,14 @@ const MovieCard = observer(({ movie }) => {
         <button className="add-btn btn"
           onClick={(e) => {
             e.stopPropagation(); // Prevents opening the modal
-            handleAddToList();
+            handleAddToList(); //TODO GET FUNCTIONALITY HERE (in poster click will reveal the movie)
           }}
         >
           +
         </button>
 
         <img 
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          src={movie.poster_path}
           alt={movie.title} 
           className="img-fluid"
           style={{ height: '34vh', width: '100%', objectFit: 'cover' }}

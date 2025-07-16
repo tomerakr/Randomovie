@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { searchMovies } from '../api/tmdb';
+import { useStores } from '../main';
 
 const NUM_SUGGESTIONS = 5
 
-function SearchBar({ setMovies }) {
+function SearchBar() {
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState([]);
-    // const [lastMovieData, setLastMovieData] = useState([]);
+    
+    const { movieStore } = useStores();
 
     const searchMoviesByTerm = () => {
         setSuggestions([]);
-        searchMovies(searchTerm)
-        .then(data => {
-            setMovies(data);
-        });
+        movieStore.searchMovies(searchTerm);
     };
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
+            console.log(searchTerm)
             searchMoviesByTerm();
         }
     };

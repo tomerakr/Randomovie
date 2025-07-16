@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 
 const MovieList = observer(({ movies }) => {
   
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   return (
     <div>
@@ -16,7 +16,7 @@ const MovieList = observer(({ movies }) => {
         <div className='row justify-content-start'>
             {movies.length > 0 &&
               movies.map(movie => (
-                <div key={movie.id} className='col mb-4'>
+                <div key={movie.id} className='col mb-4'> {/* TODO: here is what decide if the poster is all across or just 1 col, change based on size col-lg-3 */}
                     <MovieCard movie={movie} />
                 </div>
             ))}

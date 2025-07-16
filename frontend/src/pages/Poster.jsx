@@ -8,21 +8,12 @@ import { toJS } from 'mobx';
 
 const Poster = observer(() => {
     
-    const [movies, setMovies] = useState([]);
-
-    const { movieStore } = useStores();
-    
-    useEffect(() => {
-        const saved = localStorage.getItem('posterMovies');
-        if (saved) {
-            setMovies(JSON.parse(saved));
-        }
-      }, []);    
+    const { randomPosterStore } = useStores();
 
     return (
         <>
-            <Navbar setMovies={setMovies} />
-            {movies.length == 0 &&
+            <Navbar />
+            {randomPosterStore.movies.length == 0 &&
                 <div className='text-light'>
                     <h1>You have yet to create a movie poster</h1>
                     <h2>Please first add movies then go to randomovie to create your poster</h2>
@@ -33,7 +24,7 @@ const Poster = observer(() => {
             }
             <div className='container' style={{ paddingTop: '6vh' }}>
                 <div className=''>
-                    <MovieList movies={movies} />
+                    <MovieList movies={randomPosterStore.movies} />
                 </div>
             </div>
         </>

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 
-function Navbar({ setMovies }) {
+function Navbar() {
 
     return (
         <nav className="navbar navbar-expand fixed-top" style={{ backgroundColor: '#222831', color: 'red' }}>
@@ -38,7 +38,7 @@ function Navbar({ setMovies }) {
                 </div>
             </div>
 
-            <SearchBar setMovies={setMovies} />
+            <SearchBar />
         </nav>
     );
 }
