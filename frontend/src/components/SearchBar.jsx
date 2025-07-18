@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { searchMovies } from '../api/tmdb';
+import { useStores } from '../main';
 
 const NUM_SUGGESTIONS = 5
 
-function SearchBar({ setMovies }) {
+function SearchBar() {
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState([]);
-    // const [lastMovieData, setLastMovieData] = useState([]);
+    
+    const { movieStore } = useStores();
 
     const searchMoviesByTerm = () => {
         setSuggestions([]);
-        searchMovies(searchTerm)
-        .then(data => {
-            setMovies(data);
-        });
+        movieStore.searchMovies(searchTerm);
     };
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
+            console.log(searchTerm)
             searchMoviesByTerm();
         }
     };
@@ -32,24 +32,6 @@ function SearchBar({ setMovies }) {
         .then(data => {
             setSuggestions(data.slice(0, NUM_SUGGESTIONS) || []);
         });
-
-        // const fetchMovies = async () => {
-        //     try {
-        //         // setLoading(true);
-        //         const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`);
-        //         const data = await response.json();
-        //         if (data.Search) {
-        //             setSuggestions(data.Search.slice(0, NUM_SUGGESTIONS) || []);
-        //             setLastMovieData(data.Search || []);
-        //         }
-        //     } catch (error) {
-        //         console.error('Error fetching movies:', error);
-        //     } finally {
-        //         // setLoading(false);
-        //     }
-        // };
-
-        // fetchMovies();
   }, [searchTerm]);
 
     return (

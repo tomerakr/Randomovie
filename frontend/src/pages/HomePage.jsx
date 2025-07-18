@@ -1,27 +1,25 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import Navbar from "../components/Navbar";
 import MovieList from "../components/MovieList";
-import { fetchTopRatedMovies } from '../api/tmdb';
+import { observer } from "mobx-react-lite";
+import { useStores } from '../main';
+import { toJS } from 'mobx';
 
 function HomePage() {
-
-    const [movies, setMovies] = useState([]);
+    const { movieStore } = useStores();
 
     useEffect(() => {
-        fetchTopRatedMovies()
-        .then(data => {
-            setMovies(data);
-        });
+        movieStore.loadTopRated();
     }, []);
 
     return (
         <>
-            <Navbar setMovies={setMovies} />
+            <Navbar/>
             <div className='container' style={{ paddingTop: '6vh' }}>
-                <MovieList movies={movies} />
+                <MovieList movies={toJS(movieStore.movies)} />
             </div>
         </>
     );
 }
 
-export default HomePage;
+export default observer(HomePage);

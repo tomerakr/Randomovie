@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 
-function Navbar({ setMovies }) {
+function Navbar() {
 
     return (
         <nav className="navbar navbar-expand fixed-top" style={{ backgroundColor: '#222831', color: 'red' }}>
@@ -30,12 +30,15 @@ function Navbar({ setMovies }) {
                     <li className="nav-item">
                         <Link to="/randomovie" className="nav-link text-light">Randomovie</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to="/poster" className="nav-link text-light">Poster</Link>
+                    </li>
                     {/* Add more links here if needed */}
                 </ul>
                 </div>
             </div>
 
-            <SearchBar setMovies={setMovies} />
+            <SearchBar />
         </nav>
     );
 }

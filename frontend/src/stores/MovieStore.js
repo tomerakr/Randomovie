@@ -1,26 +1,35 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from "mobx";
+import { fetchTopRatedMovies, searchMovies } from "../api/tmdb";
 
 class MovieStore {
-    selectedMovies = [];
-
+    movies = [];
+    
     constructor() {
         makeAutoObservable(this);
     }
 
-    addMovie(movie) {
-        if (!this.selectedMovies.some(m => m.id === movie.id)) {
-            this.selectedMovies.push(movie);
-        }
+    async loadTopRated() {
+        fetchTopRatedMovies()
+        .then(data => {
+            this.movies = data.map(movie => {
+                return {
+                    ...movie,
+                    poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+                    backdrop_path: `https://image.tmdb.org/t/p/w780${movie.backdrop_path}`
+                };
+            });
+        });
     }
 
-    removeMovie(imdbID) {
-        this.selectedMovies = this.selectedMovies.filter(m => m.imdbID !== imdbID);
-    }
-
-    clearMovies() {
-        this.selectedMovies = [];
+    async searchMovies(query) {
+        searchMovies(query)
+        .then(data => {
+            this.movies = data.map(movie => {
+                movie.poster_path = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+                movie.backdrop_path = `https://image.tmdb.org/t/p/w780${movie.backdrop_path}`
+            });
+        });
     }
 }
 
-const movieStore = new MovieStore();
-export default movieStore;
+export const movieStore = new MovieStore();
