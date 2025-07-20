@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
 import MovieCard from './MovieCard';
 import { observer } from 'mobx-react-lite';
 
-const MovieList = observer(({ movies }) => {
+const MovieList = observer(({ movies, cardOnClick }) => {
   
   // const [loading, setLoading] = useState(true);
 
@@ -17,7 +16,7 @@ const MovieList = observer(({ movies }) => {
             {movies.length > 0 &&
               movies.map(movie => (
                 <div key={movie.id} className='col mb-4'> {/* TODO: here is what decide if the poster is all across or just 1 col, change based on size col-lg-3 */}
-                    <MovieCard movie={movie} />
+                    <MovieCard movie={movie} onClick={() => cardOnClick(movie.id)} />
                 </div>
             ))}
         </div>

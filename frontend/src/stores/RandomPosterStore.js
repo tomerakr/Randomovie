@@ -23,8 +23,19 @@ class RandomPosterStore {
         );
     }
 
-    setMovies(movies) { //TODO randomize the order of the movies 
-        this.movies = movies.map(movie => ({
+    shuffleArray(array) {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    setMovies(movies) {
+        const shuffled = this.shuffleArray(movies);
+
+        this.movies = shuffled.map(movie => ({
             id: movie.id,
             data: movie,
             title: 'Mystery',
@@ -34,11 +45,16 @@ class RandomPosterStore {
     }
 
     revealMovie(id) {
+        console.log(id);
+        console.log(this.movies)
         const movie = this.movies.find(m => m.id === id);
         if (movie && movie.state === "hidden") {
             movie.state = "chosen";
             movie.title = movie.data.title;
             movie.poster_path = movie.data.poster_path;
+            movie.backdrop_path = movie.data.backdrop_path;
+            movie.vote_average = movie.data.vote_average;
+            movie.overview = movie.data.overview;
         }
     }
 
