@@ -1,32 +1,29 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { observer } from 'mobx-react-lite';
 import { useStores } from '../main'; // <- import useStores from main.jsx
 import MovieModal from "./MovieModal";
 import '../Style/MovieCard.css';
-import { toJS } from 'mobx';
 
-const MovieCard = observer(({ movie }) => {
+const MovieCard = observer(({ movie, onClick }) => {
     const [showModal, setShowModal] = useState(false);
 
-    // ✅ Access the store from context
     const { randomMovieStore } = useStores();
 
     const handleAddToList = () => {
         randomMovieStore.addMovie(movie);
-        // console.log(toJS(movieStore.selectedMovies));
     };
 
   return (
     <div>
       <div 
         className="movie-card position-relative" 
-        style={{ minWidth: '11rem', cursor: 'pointer' }}
-        onClick={() => setShowModal(true)}
+        style={{ minWidth: '11rem' }}
+        onClick={() => { (onClick && movie.state == 'hidden') ? onClick() : setShowModal(true) }}
       >
         <button className="add-btn btn"
           onClick={(e) => {
             e.stopPropagation(); // Prevents opening the modal
-            handleAddToList(); //TODO GET FUNCTIONALITY HERE (in poster click will reveal the movie)
+            handleAddToList(); //TODO GET FUNCTIONALITY HERE (either add or remove from list or none)
           }}
         >
           +

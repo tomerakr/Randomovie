@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { useStores } from '../main'; // <- import useStores from main.jsx
 import Navbar from "../components/Navbar";
 import MovieList from "../components/MovieList";
-import { toJS } from 'mobx';
 
 const Poster = observer(() => {
     
@@ -24,7 +22,7 @@ const Poster = observer(() => {
             }
             <div className='container' style={{ paddingTop: '6vh' }}>
                 <div className=''>
-                    <MovieList movies={randomPosterStore.movies} />
+                    <MovieList movies={randomPosterStore.movies} cardOnClick={(id) => randomPosterStore.revealMovie(id)} />
                 </div>
             </div>
         </>

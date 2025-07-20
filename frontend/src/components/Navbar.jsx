@@ -1,4 +1,3 @@
-// import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 
@@ -11,13 +10,13 @@ function Navbar() {
                     <Link to="/" className="nav-link text-light">🎬 My Movies</Link>
                 </h4>
                 <button
-                className="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarContent"
-                aria-controls="navbarContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarContent"
+                    aria-controls="navbarContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
                 >
                 <span className="navbar-toggler-icon"></span>
                 </button>
